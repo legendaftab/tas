@@ -1,0 +1,105 @@
+h2 {
+  font-size: 20px;
+  text-transform: uppercase;
+  font-style: italic;
+  text-align: center;
+}
+
+h1 {
+  text-transform: uppercase;
+}
+
+p {
+  font-style: italic;
+  text-align: center;
+}
+
+input.ng-touched.ng-invalid {
+  border: 1px solid red;
+}
+
+input.ng-touched.ng-valid {
+  border: 1px solid green;
+}
+
+.container {
+  background: rgb(3, 17, 169);
+  color: white;
+}
+
+.content-body {
+  background: whitesmoke;
+  padding: 20px;
+}
+
+.form-outline {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.table-responsive {
+  margin-top: 20px;
+}
+
+.pagination {
+  padding: 20px 0;
+  text-align: center;
+  font-size: 18px;
+}
+
+.pagination ::ng-deep .ngx-pagination .current {
+  background: red;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-title {
+  font-size: 26px;
+  color: white;
+  font-weight: 700;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@media (max-width: 767.98px) {
+  .container-fluid {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .d-flex {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .form-outline input {
+    width: 100%;
+  }
+
+  .table-responsive {
+    margin-top: 10px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .container-fluid {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .form-outline input {
+    width: 100%;
+  }
+
+  .table-responsive {
+    margin-top: 15px;
+  }
+}

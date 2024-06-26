@@ -1,0 +1,140 @@
+<div class="content-body">
+  <nav class="navbar navbar-light bg-primary ">
+    <div class="container-fluid">
+      <h2 class="text-light primary py-2">MY Restaurant App</h2>
+
+      <div class="d-flex">
+        <button (click)="clickaddresto()" class="btn btn-success" data-bs-toggle="modal"
+          data-bs-target="#exampleModal">Add Restaurant</button>
+        &nbsp;&nbsp; <button routerLink="/login" (click)="logout()" class="btn btn-warning ">Logout</button>
+      </div>
+    </div>
+  </nav>
+  <br>
+
+  <div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1 class="display-4 text-center">Restaurant Management Application</h1>
+      <p class="lead text-center">Hello user! Manage your Restaurant</p>
+      <br>
+    </div>
+  </div>
+  <br>
+
+  <div class="form-outline">
+    <input type="text" [ngStyle]="{'width': '100%', 'max-width': '400px', 'margin': 'auto'}" [(ngModel)]="userFilter"
+      class="form-control" placeholder="Search Restaurant">
+  </div>
+
+  <!----Table-->
+  <div class="table-responsive">
+    <table class="table mt-4">
+      <thead>
+        <tr>
+          <th scope="col">R.Id</th>
+          <th scope="col">Name</th>
+          <th scope="col">Email </th>
+          <th scope="col">Mobile</th>
+          <th scope="col">Description</th>
+          <th scope="col">Address</th>
+          <th scope="col">Services</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let data of allResturentData | filterBy:userFilter | paginate: { itemsPerPage: pageSize, currentPage: page };let i = index">
+          <td>{{ (page - 1) * pageSize + i + 1 }}</td>
+          <td>{{data.name}}</td>
+          <td>{{data.email}}</td>
+          <td>{{data.mobile}}</td>
+          <td>{{data.description}}</td>
+          <td>{{data.address}}</td>
+          <td>{{data.services}}</td>
+          <td>
+            <mat-icon data-bs-toggle="modal" data-bs-target="#exampleModal" color="primary"
+              (click)="oneditresto(data)">edit</mat-icon>
+            &nbsp; <mat-icon color="warn" (click)="deleteResto(data)">delete</mat-icon>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div *ngIf="allResturentData.length === 0" class="mt-4 text-center">
+      No data found.
+    </div>
+    <div class="pagination">
+      <pagination-controls (pageChange)="page = $event"></pagination-controls>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header" [ngStyle]="{'background': 'blue'}">
+            <h5 class="modal-title" id="exampleModalLabel"
+              [ngStyle]="{'font-size': '26px', 'color': 'white', 'font-weight': '500'}">
+              RESTAURANT RECORDS
+            </h5>
+
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+
+          <!--MODAL BOX-->
+          <div class="modal-body" [ngStyle]="{'background': 'white'}">
+            <!--form -->
+            <form [formGroup]="formValue">
+              <div class="form-group">
+                <label for="exampleInputName1">Name</label>
+                <input type="text" formControlName="name" maxlength="20" class="form-control" id="exampleInputName1"
+                  placeholder="my Restaurant name">
+              </div>
+              <br>
+              <div class="form-group">
+                <label for="exampleInputEmail1">Email address</label>
+                <input type="email" formControlName="email" maxlength="25" class="form-control" id="exampleInputEmail1"
+                  placeholder="xyz@gmail.com">
+              </div>
+              <br>
+
+              <div class="form-group">
+                <label for="exampleInputMobile1">Mobile No.</label>
+                <input type="text" formControlName="mobile" maxlength="10" class="form-control" id="exampleInputMobile1"
+                  placeholder="+91 7777777777">
+              </div>
+              <br>
+
+              <div class="form-group">
+                <label for="exampleInputAddress1">Address</label>
+                <input type="text" formControlName="address" maxlength="30" class="form-control"
+                  id="exampleInputAddress1" placeholder="N/A new Street New Delhi">
+              </div>
+              <br>
+
+              <div class="form-group">
+                <label for="exampleInputDescription1">Description</label>
+                <input type="text" formControlName="description" maxlength="10" class="form-control"
+                  id="exampleInputDescription1" placeholder="Describe the Restaurant">
+              </div>
+              <br>
+
+              <div class="form-group">
+                <label for="exampleInputServices1">Services</label>
+                <input type="text" formControlName="services" maxlength="20" class="form-control"
+                  id="exampleInputServices1" placeholder="Fast Food/biryani/pure veg/pure Non veg">
+              </div>
+              <br>
+            </form>
+          </div>
+          <div class="modal-footer" [ngStyle]="{'background':'blue'}">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button *ngIf="showadd" type="button" [disabled]="formValue.invalid" class="btn btn-success"
+              (click)="addRest()">Add details</button>
+            <button *ngIf="showbtn" type="button" [disabled]="formValue.invalid" class="btn btn-success"
+              (click)="updateRest()">Update details</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

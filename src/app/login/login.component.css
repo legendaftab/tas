@@ -1,0 +1,48 @@
+.card {
+  background: rgb(2, 10, 162);
+  color: #fff;
+  padding: 20px;
+  border: 1px solid white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+form {
+  margin-top: 20px;
+}
+
+@media (max-width: 767.98px) {
+  .card {
+    width: 100%;
+    height: auto;
+    padding: 15px;
+  }
+  
+  h1 {
+    font-size: 20px;
+  }
+  
+  .btn-block {
+    width: 100%;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .card {
+    width: 90%;
+    height: auto;
+    padding: 15px;
+  }
+}
+
+@media (min-width: 992px) {
+  .card {
+    width: 550px;
+    height: auto;
+    padding: 31px 40px;
+  }
+}
